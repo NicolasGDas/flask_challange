@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+mysqlclient
+pycodestyle
+flask_cors
+pymysql
