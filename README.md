@@ -1,4 +1,13 @@
 # flask_challange
+
+ANTES QUE PROBAR deberian crear un archivo .env y colocar los datos necesarios en estas variables para que funcione porque no lo comiteo el .env
+```
+MYSQL_HOST = 'host'
+MYSQL_USER = 'user'
+MYSQL_PASSWORD = 'password'
+MYSQL_DB = 'nombre_db'
+```
+
 Cuando se clona o se copia el las carpetas deberian instalar los requerimientos
 ```
 pip instal -r requirements.txt
