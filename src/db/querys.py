@@ -1,10 +1,17 @@
 import pymysql
+from src.config import user,password,host,database
+"""
+Todas estas querys estan realizadas con pymsql porque fue con el que emprece, despues me pase a 
+sqlalchemy porque era mas facil para intanciar la db. 
+Si quisiera cambiar estos metodos quedarian obsoletos y deberia implementar con sqlAlchemy
 
+
+"""
 def obtener_conexion():
-    return pymysql.connect(host='localhost',
-                                user='root',
-                                password='my-secret-pw',
-                                db='auravant-challange')
+    return pymysql.connect(host=host,
+                                user=user,
+                                password=password,
+                                db=database)
 
 """
 Devuelve el idEmpresa de la tabla empresa
