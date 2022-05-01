@@ -28,3 +28,4 @@ Para balance_empresa_usuario se debe ingresar por params idUsuario e idEmpresa.
 Para balance_empresa se debe ingresar por params idEmpresa.
 
 Tema base de datos. Esta conectado, tiene los modelos y tiene un init, no se como funciona, supuestamente funciona pero yo hice todo el manejo inicial de db de crear tablas y todo por mysql workbench. Dentro de la carpeta DB tengo copiado el; DDL para crear las 3 tablas con sus propiedades
+Use una imagen en  docker para la base de datos mysql
