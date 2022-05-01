@@ -5,37 +5,44 @@ def obtener_conexion():
                                 user='root',
                                 password='my-secret-pw',
                                 db='auravant-challange')
+
 """
-Query generica que recibe el nombre de la pk, la tabla y el id,
-devuelve el pk de la tabla, es mas que nada para 
-comprobar que existe este id
+Devuelve el idEmpresa de la tabla empresa
 """
-#LA verdad que recibas el nombre de la pk esta mal, pero necesitaba hacerlo
-#generico, y es lo que se me ocurrio, tranquilamente puede no existir esta version generica
-# lo cual seria lo mejor
-def query_una_condition_obtener_pk(pk,tabla,idBuscar):
+def query_obtener_empresa(idEmpresa):
     conexion = obtener_conexion()
     with conexion.cursor() as cursor:
-        sql = f"SELECT {pk} FROM {tabla} WHERE {pk} = {idBuscar}"
+        sql = f"SELECT * FROM empresas WHERE PK_idEmpresa = {idEmpresa}"
         cursor.execute(sql)
-        datos = cursor.fetchone()
+        datos = cursor.fetchall()
+    conexion.close()
+    return datos
+"""
+Funcion que devuelve todos los datos de un usuario
+"""
+def query_obtener_usuario(idUsuario):
+    conexion = obtener_conexion()
+    with conexion.cursor() as cursor:
+        sql = f"SELECT * FROM usuarios WHERE PK_idUsuario = {idUsuario}"
+        cursor.execute(sql)
+        datos = cursor.fetchall()
     conexion.close()
     return datos
 
 
 """
-Query generica que recibe el nombre de la pk, la tabla y el id,
-devuelve TODOS los campos de la tabla con dicho id
+
 """
+
 #LA verdad que recibas el nombre de la pk esta mal, pero necesitaba hacerlo
 #generico, y es lo que se me ocurrio, tranquilamente puede no existir esta version generica
 # lo cual seria lo mejor
-def query_una_condition_obtener_todo(pk,tabla,idBuscar):
+def query_registros_por_empresa(idEmpresa):
     conexion = obtener_conexion()
     with conexion.cursor() as cursor:
-        sql = f"SELECT * FROM {tabla} WHERE {pk} = {idBuscar}"
+        sql = f"SELECT * FROM registros WHERE FK_idEmpresa = {idEmpresa}"
         cursor.execute(sql)
-        datos = cursor.fetchone()
+        datos = cursor.fetchall()
     conexion.close()
     return datos
 
@@ -45,10 +52,10 @@ Query generica que recibe el nombre de la  tabla dos tuplas para cada where,
 las tuplas tienen que tener el formato (nombre_pk,pk)
 devuelve TODOS los campos de la tabla que cumpla con ambos where
 """
-def query_dos_conditions_obtener_todo(tabla,primerWhere,segundoWhere):
+def query_registro_por_empresa_usuario(idUsuario,idEmpresa):
     conexion = obtener_conexion()
     with conexion.cursor() as cursor:
-        sql = f"SELECT * FROM {tabla} WHERE {primerWhere[0]} = {primerWhere[1]} AND {segundoWhere[0]} = {segundoWhere[1]}"
+        sql = f"SELECT * FROM registros WHERE FK_idUsuario = {idUsuario} AND FK_idEmpresa = {idEmpresa}"
         cursor.execute(sql)
         datos = cursor.fetchall()
     conexion.close()

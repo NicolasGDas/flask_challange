@@ -1,4 +1,4 @@
-from db import querys
+from src.db import querys
 
 
 
@@ -8,7 +8,7 @@ retorna True en caso de encontrar el usuario en la db
 retorna False en caso de que el usuario no exista ne la db
 """
 def existe_usuario(idUsuario):
-    datos = querys.query_una_condition_obtener_pk("PK_idUsuario","usuarios",idUsuario)
+    datos = querys.query_obtener_usuario(idUsuario)
     if datos:
         return True
     return False
@@ -21,7 +21,7 @@ retorna False en caso de que el empresa no exista ne la db
 """
 def existe_empresa(idEmpresa):
     retorno = False
-    datos = querys.query_una_condition_obtener_pk("PK_idEmpresa","empresas",idEmpresa)
+    datos = querys.query_obtener_empresa(idEmpresa)
     if datos:
         retorno  = True
     return retorno
@@ -34,8 +34,8 @@ Retorna False en caso de que el idEmpresa ingresado NO sea el mismo que la db
 """
 def es_misma_empresa(idUsuario,idEmpresa):
     retorno = False
-    datos = querys.query_una_condition_obtener_todo("usuarios",idUsuario)
-    if int(datos[1]) == int(idEmpresa):
+    datos = querys.query_obtener_usuario(idUsuario)
+    if int(datos[0][1]) == int(idEmpresa):
         retorno  = True
     return retorno
 """
@@ -45,7 +45,7 @@ tener registros
 """
 def registros_por_empresa(idEmpresa):
     data ={}
-    datos = querys.query_una_condition_obtener_todo("registros",idEmpresa)
+    datos = querys.query_registros_por_empresa(idEmpresa)
     if len(datos) > 0:
         data[f"Empresa numero {idEmpresa}"] = []
         registro = {}
@@ -65,9 +65,8 @@ retorna una lista vacia si no hay registros o un dict con los datos en caso de
 tener registros
 """
 def registros_empresa_usuario(idEmpresa,idUsuario):
-    primerWhere = ("FK_idEmpresa",idEmpresa)
-    segundoWhere = ("FK_idUsuario",idUsuario)
-    datos = querys.query_dos_conditions_obtener_todo("registros",primerWhere,segundoWhere)
+
+    datos = querys.query_registro_por_empresa_usuario(idUsuario,idEmpresa)
     data ={}
     if len(datos) > 0:
         data[f"Empresa numero {idEmpresa}"] = []

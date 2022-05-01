@@ -1,11 +1,14 @@
-class DevelopmentConfig():
-    DEBUG = True
-    MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'my-secret-pw'
-    MYSQL_DB = 'auravant-challange'
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+user = os.environ["MYSQL_USER"]
+password = os.environ["MYSQL_PASSWORD"]
+host = os.environ["MYSQL_HOST"]
+database = os.environ["MYSQL_DB"]
+
+DATABASE_CONNECTION_URI = f'mysql://{user}:{password}@{host}/{database}'
 
 
-config = {
-    'development': DevelopmentConfig
-}

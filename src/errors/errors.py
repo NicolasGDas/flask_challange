@@ -1,6 +1,5 @@
-from templates import templates
-
-"""
+from src.templates import templates
+""""
 Funciones que retornan el template con la data necesaria para manejar errores
 
 """
@@ -19,5 +18,8 @@ def datos_recibidos():
 def error_en_empresa():
     return templates.mal_empresa()
 
-def pagina_no_encontrada():
+def pagina_no_encontrada(self):
     return templates.pagina_no_encontrada()
+
+def no_registro(query):
+    return templates.no_registro(query)

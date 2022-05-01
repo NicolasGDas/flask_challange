@@ -4,3 +4,6 @@ mysqlclient
 pycodestyle
 flask_cors
 pymysql
+dotenv
+flask_migrate
+flask-sqlalchemy

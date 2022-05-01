@@ -1,7 +1,7 @@
 def todo_ok():
     return "<h1>Todo Ok</h1>", 200
 
-def pagina_no_encontrada(error):
+def pagina_no_encontrada():
     return "<h1>Página no encontrada</h1>", 404
 
 def bad_req(problem):
@@ -15,3 +15,6 @@ def mal_empresa():
 
 def no_existe(problem):
     return f"<h1>No existe:  {problem}, con ese id, verificar datos ingresados</h1>", 400
+
+def no_registro(query):
+    return f"<h1>La query:  {query}, no tienen registros guardados</h1>", 400
